@@ -66,14 +66,16 @@ const HeroSection = () => {
         <section>
           <Carousel>
             {products?.map((product: Product) => (
-              <Image
-                priority
-                key={product.id}
-                src={product.image}
-                alt={product.title}
-                width={500}
-                height={500}
-              />
+              <div key={product.id} className="bg-[hsl(220.9 39.3% 11%)] mix-blend-multiply">
+                <Image
+                  priority
+                  src={product.image}
+                  alt={product.title}
+                  width={500}
+                  height={500}
+                  className="brightness-105"
+                />
+              </div>
             ))}
           </Carousel>
         </section>
