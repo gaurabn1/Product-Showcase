@@ -55,7 +55,7 @@ export default function Carousel({ children }: { children: ReactNode }) {
   return (
     <div className="overflow-hidden relative w-full max-w-lg mx-auto">
       <div
-        className="flex items-center transition-transform duration-300 ease-out"
+        className=" flex items-center transition-transform duration-300 ease-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {slides.map((slide, index) => (
