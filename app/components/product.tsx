@@ -28,9 +28,9 @@ export default function Product() {
 
   return (
     <>
-      <div className="h-[calc(100vh-139px)] flex flex-col justify-around">
-        <section className="flex items-center justify-around">
-          <div className="w-1/2 flex flex-col gap-y-5">
+      <div className="md:h-[calc(100vh-139px)] flex flex-col gap-y-10 justify-around">
+        <section className="flex flex-col-reverse gap-y-10 sm:flex-row items-center justify-around">
+          <div className="sm:w-1/2 px-5 flex flex-col gap-y-5">
             <h2 className="text-4xl leading-[1.2]">{product?.title}</h2>
             <p className="text-lg">{product?.description}</p>
             <div className="flex items-center justify-end gap-x-5">
@@ -53,7 +53,7 @@ export default function Product() {
               })}
             </div>
             <div className="flex items-center justify-end">
-              <Button variant="transparent" ><span className="capitalize">{product?.category}</span></Button>
+              <Button variant="transparent" noHover><span className="capitalize">{product?.category}</span></Button>
             </div>
           </div>
           <div>
@@ -65,7 +65,7 @@ export default function Product() {
                     alt="Product Image"
                     width={300}
                     height={300}
-                    className="w-full h-full mix-blend-multiply transition-transform ease-in-out duration-500 hover:scale-105 dark:brightness-200"
+                    className="w-full h-full mix-blend-multiply transition-transform ease-in-out duration-500 hover:scale-105 dark:brightness-150"
                   />
                 </section>
               </div>
@@ -74,7 +74,7 @@ export default function Product() {
             )}
           </div>
         </section>
-        <section>
+        <section className="mb-5">
           <div className="text-center">
             <h3 className="text-xl mb-4">For similar products, kindly visit the</h3>
             <Link href="/products">

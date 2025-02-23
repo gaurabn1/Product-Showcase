@@ -18,9 +18,8 @@ export const ProductCard = () => {
 
   useEffect(() => {
     const firstProduct = products?.[0]
-    console.log(firstProduct?.category)
     setSelectedCategory(firstProduct?.category || '')
-  }, [products])
+  }, [products, setSelectedCategory])
 
   if (isLoading || !selectedCategory) {
     return (
