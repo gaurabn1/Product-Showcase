@@ -21,7 +21,7 @@ const ContactFormFields: React.FC<Props> = ({ ContactFields, formData, handleCha
               value={formData[field.name]}
               onChange={handleChange}
               placeholder={field.placeholder}
-              className="h-48 p-5 outline-black resize-none border-b border-r-secondary-foreground w-full"
+              className="h-48 p-5 outline-black resize-none border border-r-secondary-foreground w-full"
             />
           ) : (
             <input
@@ -29,7 +29,7 @@ const ContactFormFields: React.FC<Props> = ({ ContactFields, formData, handleCha
               name={field.name}
               value={formData[field.name]}
               onChange={handleChange}
-              className="h-12 px-5 border-b border-r-secondary-foreground w-full"
+              className="h-12 px-5 border border-r-secondary-foreground w-full"
               placeholder={field.placeholder}
             />
           )}

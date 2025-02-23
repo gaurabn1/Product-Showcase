@@ -3,10 +3,21 @@ import toast from "react-hot-toast";
 
 const BASE_URL = 'http://localhost:5000';
 
+export async function sendEmail(data) {
+  try {
+    const response = await axios.post(`${BASE_URL}/subscriptions`, data);
+    if (response.status === 201)
+      toast.success("Subscribed to newsletter");
+    return response.status;
+  } catch (error) {
+    toast.error("Failed to subscribe, please try again later");
+    throw error;
+  }
+}
+
 export async function sendMessage(data) {
   try {
     const response = await axios.post(`${BASE_URL}/contact`, data);
-    console.log(response.status)
     if (response.status === 201)
       toast.success("Message sent successfully");
     return response.data;
