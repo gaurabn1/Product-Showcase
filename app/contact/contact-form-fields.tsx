@@ -5,10 +5,9 @@ type Props = {
   ContactFields: ContactProps[];
   formData: Record<string, string>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  errors: Partial<Record<string, string>>;
 };
 
-const ContactFormFields: React.FC<Props> = ({ ContactFields, formData, handleChange, errors }) => {
+const ContactFormFields: React.FC<Props> = ({ ContactFields, formData, handleChange }) => {
   return (
     <>
       {ContactFields.map((field, index) => (

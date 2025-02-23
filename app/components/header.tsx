@@ -41,7 +41,7 @@ const Header = () => {
         <ul className="flex items-center gap-4 space-x-4 leading-3">
           {navItems.map((item) => (
             <li key={item.href}>
-              <button className={`${pathname === item.href ? 'font-bold' : ''}`} onClick={() => navigate.push(item.href)}>{item.label}</button>
+              <button className={`hover:underline ${pathname === item.href ? 'font-bold' : ''}`} onClick={() => navigate.push(item.href)}>{item.label}</button>
             </li>
           ))}
         </ul>

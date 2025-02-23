@@ -6,8 +6,8 @@ import { ContactFields } from "../contact/data/contact-fields";
 import { z } from 'zod';
 import toast from "react-hot-toast";
 import { contactSchema } from "../contact/schemas/contact.schema";
-import ContactFormFields from "../contact/contact-form-fields";
 import Image from "next/image";
+import ContactFormFields from "../contact/contact-form-fields";
 
 
 type FormData = z.infer<typeof contactSchema>
@@ -21,7 +21,7 @@ export default function Contact() {
     message: "",
   }));
 
-  const [errors, setErrors] = useState<Partial<FormData>>({})
+  //const [errors, setErrors] = useState<Partial<FormData>>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -37,7 +37,7 @@ export default function Contact() {
       result.error.errors.forEach((err) => {
         errorMap[err.path[0] as keyof FormData] = err.message;
       });
-      setErrors(errorMap);
+      //setErrors(errorMap);
 
       result.error.errors.forEach((err) => {
         toast.custom((t) => (
@@ -59,7 +59,7 @@ export default function Contact() {
       return;
     }
 
-    setErrors({});
+    //setErrors({});
 
     try {
       const response = await sendMessage(formData);
@@ -93,7 +93,6 @@ export default function Contact() {
             ContactFields={ContactFields}
             formData={formData}
             handleChange={handleChange}
-            errors={errors}
           />
         </div>
         <div className="flex justify-end">
