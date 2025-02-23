@@ -8,7 +8,7 @@ interface CategoryDropdownProps {
   onCategorySelect: (category: string) => void;
 }
 
-export const CategoryDropdown = ({ categories, selectedCategory, onCategorySelect }: CategoryDropdownProps) => {
+export const CategoryDropdown = ({ categories, onCategorySelect }: CategoryDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
