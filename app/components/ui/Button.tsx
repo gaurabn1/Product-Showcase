@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority"
 
 type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'transparent',
-  size?: 'icon'
+  noHover?: boolean
 }
 
 
@@ -11,12 +11,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-blue-500 text-white',
+        primary: 'bg-blue-500 text-white hover:bg-blue-600',
         secondary: 'bg-gray-500 text-white',
-        transparent: 'bg-transparent text-blue-500 border border-blue-500'
+        transparent: 'bg-transparent text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white'
       },
-      size: {
-        icon: 'py-2 px-4'
+      noHover: {
+        true: 'hover:bg-transparent hover:text-blue-500'
       }
     },
     defaultVariants: {
@@ -26,7 +26,7 @@ const buttonVariants = cva(
 )
 
 
-export default function Button({ variant, size, ...props }: ButtonProps) {
-  return <button {...props} className={buttonVariants({ variant, size })} />
+export default function Button({ variant, noHover, ...props }: ButtonProps) {
+  return <button {...props} className={buttonVariants({ variant, noHover })} />
 }
 
