@@ -1,12 +1,13 @@
 import { useProducts } from "../hooks/fetch-products";
 import { useCategoryStore } from "../store/useCategoryStore";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SkeletonCard } from "../products/skeleton";
 import { Product } from "../products/types/product";
 import Pagination from "../products/components/pagination";
 import { CategoryDropdown } from "../products/components/category-drop-down";
-import { ProductCardComponent } from "../products/components/product-component.card";
+import { ProductCardComponent } from "../products/components/product-component-card";
 import { LoadingAnimation } from "@/components/ui/loading-animation";
+import toast from "react-hot-toast";
 
 export const ProductCard = () => {
   const { data: products, isLoading, isError } = useProducts();
@@ -20,6 +21,29 @@ export const ProductCard = () => {
     const firstProduct = products?.[0]
     setSelectedCategory(firstProduct?.category || '')
   }, [products, setSelectedCategory])
+
+
+  const categories: string[] = useMemo(() => {
+    return products ? [...new Set(products.map((product: Product) => product.category))] : []
+  }, [products])
+
+  const groupedProducts: Record<string, Product[]> = useMemo(() => {
+    if (!products) return {}
+    return products.reduce((acc: Record<string, Product[]>, product: Product) => {
+      if (product.category) {
+        if (!acc[product.category]) {
+          acc[product.category] = []
+        }
+        acc[product.category].push(product)
+      }
+      return acc
+    }, {})
+  }, [products])
+
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedCategory])
 
   if (isLoading || !selectedCategory) {
     return (
@@ -38,22 +62,10 @@ export const ProductCard = () => {
   }
 
   if (isError) {
-    return <div>Error loading products..</div>;
+    toast.error('Failed to fetch products')
   }
 
   if (!products || products.length === 0) return <p>No products available</p>;
-
-  const categories: string[] = [...new Set(products.map((product: Product) => product.category))]
-
-  const groupedProducts: Record<string, Product[]> = products.reduce((acc: Record<string, Product[]>, product: Product) => {
-    if (product.category) {
-      if (!acc[product.category]) {
-        acc[product.category] = []
-      }
-      acc[product.category].push(product)
-    }
-    return acc
-  }, {})
 
   const currentProducts = groupedProducts[selectedCategory]?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
   const totalPages = Math.ceil((groupedProducts[selectedCategory]?.length || 0) / itemsPerPage);

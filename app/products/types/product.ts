@@ -11,3 +11,7 @@ export interface Product {
     count: number;
   }
 }
+
+export interface ProductPageProps {
+  products: Product[];
+}

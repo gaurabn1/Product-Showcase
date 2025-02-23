@@ -78,7 +78,7 @@ export default function Product() {
           <div className="text-center">
             <h3 className="text-xl mb-4">For similar products, kindly visit the</h3>
             <Link href="/products">
-              <Button variant="transparent" className="underline text-blue-500">
+              <Button variant="transparent" className=" text-blue-500">
                 Products Page
               </Button>
             </Link>
