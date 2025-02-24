@@ -8,6 +8,7 @@ import { CategoryDropdown } from "../products/components/category-drop-down";
 import { ProductCardComponent } from "../products/components/product-component-card";
 import { LoadingAnimation } from "@/components/ui/loading-animation";
 import toast from "react-hot-toast";
+import ScrollToTop from "./ui/ScrollToTop";
 
 export const ProductCard = () => {
   const { data: products, isLoading, isError } = useProducts();
@@ -97,6 +98,7 @@ export const ProductCard = () => {
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
+          <ScrollToTop />
         </div>
       }
     </div>
