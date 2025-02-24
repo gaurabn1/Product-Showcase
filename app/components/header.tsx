@@ -6,10 +6,12 @@ import { useRouter, usePathname } from 'next/navigation';
 import { ModeToggle } from './mode-toggle';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { FaHome, FaInfoCircle, FaBoxes, FaPhone } from 'react-icons/fa';
 
 interface HeaderNavItem {
   label: string;
   href: string;
+  icon: React.ReactNode;
 }
 
 const Header = () => {
@@ -19,10 +21,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems: HeaderNavItem[] = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Home', href: '/', icon: <FaHome /> },
+    { label: 'Products', href: '/products', icon: <FaBoxes /> },
+    { label: 'About', href: '/about', icon: <FaInfoCircle /> },
+    { label: 'Contact', href: '/contact', icon: <FaPhone /> },
   ]
 
   return (
@@ -53,16 +55,20 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <nav className="absolute top-16 left-0 w-full bg-background p-4 shadow-lg md:hidden">
-          <ul className="flex flex-col gap-4 text-center">
+          <ul className="flex flex-col gap-4 items-center text-center">
             {navItems.map((item) => (
-              <li key={item.href}>
-                <button className={`${pathname === item.href ? 'font-bold' : ''}`} onClick={() => { navigate.push(item.href); setIsMenuOpen(false); }}>{item.label}</button>
+              <li key={item.href} className="w-fit">
+                <button className={`${pathname === item.href ? 'font-bold' : ''}`} onClick={() => { navigate.push(item.href); setIsMenuOpen(false); }}>
+                  <div className="flex gap-2">
+                    {item.icon}{item.label}
+                  </div>
+                </button>
               </li>
             ))}
           </ul>
         </nav>
       )}
-      <div className="flex gap-3">
+      <div className="lg:flex gap-3 hidden">
         <ModeToggle />
         <div className='hidden md:block'>
           <Button variant="primary" onClick={() => navigate.push('/contact')}>Get In Touch</Button>

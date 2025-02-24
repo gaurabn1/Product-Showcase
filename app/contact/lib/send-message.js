@@ -1,11 +1,17 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL1 = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:8000';
 
 export async function sendEmail(data) {
   try {
-    const response = await axios.post(`${BASE_URL}/subscriptions`, data);
+    const response = await axios.post(`${BASE_URL}/api/subscribe/`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('access')}`
+      },
+    });
     if (response.status === 201)
       toast.success("Subscribed to newsletter");
     return response.status;
@@ -17,7 +23,12 @@ export async function sendEmail(data) {
 
 export async function sendMessage(data) {
   try {
-    const response = await axios.post(`${BASE_URL}/contact`, data);
+    const response = await axios.post(`${BASE_URL}/api/contact/add/`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('access')}`
+      }
+    });
     if (response.status === 201)
       toast.success("Message sent successfully");
     return response.data;
