@@ -1,7 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const BASE_URL1 = 'http://localhost:5000';
 const BASE_URL = 'http://localhost:8000';
 
 export async function sendEmail(data) {
