@@ -8,7 +8,6 @@ export async function sendEmail(data) {
     const response = await axios.post(`${BASE_URL}/api/subscribe/`, data, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('access')}`
       },
     });
     if (response.status === 201)
@@ -25,7 +24,6 @@ export async function sendMessage(data) {
     const response = await axios.post(`${BASE_URL}/api/contact/add/`, data, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem('access')}`
       }
     });
     if (response.status === 201)

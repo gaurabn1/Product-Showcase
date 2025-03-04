@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Pagination from '@/app/products/components/pagination';
-import Verify_token, { AccessPageProps } from '../verify_token';
 import { useRouter } from 'next/navigation';
 import { useContacts } from '@/app/hooks/fetch-contacts';
 import MessageTable from './components/MessageTable';
 import MessageCard from './components/MessageCard';
-import { LoadingAnimation } from '@/app/components/ui/Loading-animation';
+import { LoadingAnimation } from '@/app/components/ui/LoadingAnimation';
+import Verify_token, { AccessPageProps } from '../utils/verify-token';
 
 
 export default function MessageList() {

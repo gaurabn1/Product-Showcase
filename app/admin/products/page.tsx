@@ -1,12 +1,12 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import Verify_token, { AccessPageProps } from '../verify_token';
 import Pagination from '@/app/products/components/pagination';
 import { useProducts } from '@/app/hooks/fetch-products';
 import { LoadingAnimation } from '@/app/components/ui/Loading-animation';
 import ProductTable from './components/ProductTable';
 import ProductCard from './components/ProductCard';
+import Verify_token, { AccessPageProps } from '../utils/verify-token';
 
 export default function ProductList() {
   const { data: products = [], isLoading, error } = useProducts();
