@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Pagination from '@/app/products/components/pagination';
-import Verify_token, { AccessPageProps } from '../verify_token';
 import { useRouter } from 'next/navigation';
 import { useSubscriptions } from '@/app/hooks/fetch-subscriptions';
 import SubscriptionTable from './components/SubscriptionTable';
 import SubscriptionCard from './components/SubscriptionCard';
 import { LoadingAnimation } from '@/app/components/ui/Loading-animation';
+import Verify_token, { AccessPageProps } from '../utils/verify-token';
 
 export default function SubscriptionList() {
   const { data: messages = [], isLoading, isError } = useSubscriptions();
